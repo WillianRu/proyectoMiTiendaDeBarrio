@@ -24,10 +24,16 @@ public class ProductCrud implements GenericCrudI<Product>{
     }
     @Override
     public void remove (Product entity){
-
+        productList.remove(entity);
     }
     @Override
     public Product findByID(Integer id) {
+        for (int i= 0; i<productList.size(); i++){
+            if(productList.get(i).getIdProduct()==id){
+                return productList.get(i);
+            }
+        }
+        System.out.println("Producto no encontrado en el inventario.");
         return null;
     }
 

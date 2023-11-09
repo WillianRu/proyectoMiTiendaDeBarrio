@@ -88,7 +88,14 @@ public class ProductService {
         }
     }
 
+    public void removeProduct(){
+        Scanner scanner = new Scanner(System.in);
 
-
+        System.out.println("Ingrese el id del producto a remover: ");
+        Integer productID = scanner.nextInt();
+        Product product = productCrud.findByID(productID);
+        productCrud.remove(product);
+        System.out.println("Producto eliminado con éxito.");
+    }
 
 }
