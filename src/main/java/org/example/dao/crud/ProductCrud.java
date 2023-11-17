@@ -4,6 +4,8 @@ import org.example.entity.Product;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 public class ProductCrud implements GenericCrudI<Product>{
 
@@ -28,13 +30,12 @@ public class ProductCrud implements GenericCrudI<Product>{
     }
     @Override
     public Product findByID(Integer id) {
-        for (int i= 0; i<productList.size(); i++){
-            if(productList.get(i).getIdProduct()==id){
-                return productList.get(i);
-            }
+        Optional<Product> product = productList.stream().filter(p -> Objects.equals(p.getIdProduct(), id)).findFirst();
+        if (product.isEmpty()){
+            System.out.println("Producto no encontrado en el inventario.");
+            return null;
         }
-        System.out.println("Producto no encontrado en el inventario.");
-        return null;
+        return product.get();
     }
 
     @Override

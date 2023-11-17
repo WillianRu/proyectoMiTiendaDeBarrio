@@ -101,7 +101,7 @@ public class ProductService {
 
         System.out.println("Ingrese el id del producto por actualizar: ");
         Integer productID = scanner.nextInt();
-        System.out.println("Ingrese la opcion que desea actualizar: ");
+        Product product = productCrud.findByID(productID);
 
         System.out.println("1. Nombre");
         System.out.println("2. Descripcion");
@@ -109,10 +109,11 @@ public class ProductService {
         System.out.println("4. URL");
         System.out.println("5. Precio");
 
-        Product product = productCrud.findByID(productID);
+        System.out.println("Ingrese la opcion que desea actualizar: ");
+        Integer option = scanner.nextInt();
+        scanner.nextLine();
 
-        Integer choice = scanner.nextInt();
-        switch (choice) {
+        switch (option) {
             case 1 -> {
                 System.out.println("Ingrese el nuevo nombre: ");
                 String productName = scanner.nextLine();
