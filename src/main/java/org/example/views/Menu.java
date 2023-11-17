@@ -41,7 +41,7 @@ public class Menu {
         switch (choice) {
             case 1 -> productService.createProduct(); //  Agregar producto
             case 2 -> productService.removeProduct(); //  Eliminar producto
-            case 3 -> System.out.println(); //  Actualizar producto
+            case 3 -> productService.updateProduct(); //  Actualizar producto
             case 4 -> productService.displayAllProducts(); //  Ver todos los productos
             case 5 -> System.out.println(); //  Vender productos
             case 6 -> System.out.println("Saliendo ...");

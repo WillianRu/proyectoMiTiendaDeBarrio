@@ -17,10 +17,10 @@ public class ProductCrud implements GenericCrudI<Product>{
     public void add (Product entity){
         productList.add(entity);
     }
-
     @Override
     public void edit (Product entity){
-
+        Integer productID = entity.getIdProduct();
+        productList.set(productID,entity);
     }
     @Override
     public void remove (Product entity){

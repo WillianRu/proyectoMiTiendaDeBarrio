@@ -87,7 +87,6 @@ public class ProductService {
             }
         }
     }
-
     public void removeProduct(){
         Scanner scanner = new Scanner(System.in);
 
@@ -96,6 +95,53 @@ public class ProductService {
         Product product = productCrud.findByID(productID);
         productCrud.remove(product);
         System.out.println("Producto eliminado con éxito.");
+    }
+    public void updateProduct(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Ingrese el id del producto por actualizar: ");
+        Integer productID = scanner.nextInt();
+        System.out.println("Ingrese la opcion que desea actualizar: ");
+
+        System.out.println("1. Nombre");
+        System.out.println("2. Descripcion");
+        System.out.println("3. Etiqueta");
+        System.out.println("4. URL");
+        System.out.println("5. Precio");
+
+        Product product = productCrud.findByID(productID);
+
+        Integer choice = scanner.nextInt();
+        switch (choice) {
+            case 1 -> {
+                System.out.println("Ingrese el nuevo nombre: ");
+                String productName = scanner.nextLine();
+                product.setProductName(productName);
+            }
+            case 2 -> {
+                System.out.println("Ingrese la nueva descripcion: ");
+                String productDescription = scanner.nextLine();
+                product.setDescription(productDescription);
+            }
+            case 3 -> {
+                System.out.println("Ingrese la nueva etiqueta: ");
+                String productLabel = scanner.nextLine();
+                product.setLabel(productLabel);
+            }
+            case 4 -> {
+                System.out.println("Ingrese la nueva URL: ");
+                String productURL = scanner.nextLine();
+                product.setUrlPhoto(productURL);
+            }
+            case 5 -> {
+                System.out.println("Ingrese el nuevo precio: ");
+                Double productPrice = scanner.nextDouble();
+                product.setPrice(productPrice);
+            }
+            default -> System.out.println("Opción invalida. Por favor intenta de nuevo.");
+        }
+        productCrud.edit(product);
+        System.out.println("Producto actualizado con éxito.");
     }
 
 }
