@@ -1,8 +1,10 @@
 package org.example.service;
 
 import org.example.dao.crud.CategoryCrud;
+import org.example.dao.crud.InventoryCrud;
 import org.example.dao.crud.ProductCrud;
 import org.example.entity.Category;
+import org.example.entity.Inventory;
 import org.example.entity.Product;
 
 import com.opencsv.bean.CsvToBean;
@@ -15,12 +17,14 @@ import java.util.Scanner;
 
 public class ProductService {
     private final ProductCrud productCrud;
+    private final InventoryCrud inventoryCrud;
     private org.example.entity.Category Category;
     private static int currentId=0;
     CategoryCrud categoryCrud = new CategoryCrud(Category);
 
-    public ProductService(ProductCrud productCrud) {
+    public ProductService(ProductCrud productCrud, InventoryCrud inventoryCrud) {
         this.productCrud = productCrud;
+        this.inventoryCrud = inventoryCrud;
     }
 
     public void loadProducts(){
@@ -69,6 +73,12 @@ public class ProductService {
         System.out.println("Digite el numero correspondiente a la categoria asociada: ");
         int categoryNumber = scanner.nextInt();
         Category category = categoryCrud.findByID(categoryNumber);
+
+        System.out.println("Ingrese el stock disponible: ");
+        int stock = scanner.nextInt();
+
+        Inventory inventory = new Inventory (currentId,stock);
+        inventoryCrud.add(inventory);
 
         Product product = new Product(currentId, productName, description, urlPhoto, price, category, label);
         productCrud.add(product);

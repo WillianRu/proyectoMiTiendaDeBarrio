@@ -1,5 +1,6 @@
 package org.example.views;
 import org.example.entity.Category;
+import org.example.service.BillService;
 import org.example.service.ProductService;
 
 import java.util.Scanner;
@@ -7,9 +8,11 @@ import java.util.Scanner;
 public class Menu {
 
     private ProductService productService;
+    private BillService billService;
 
-    public Menu(ProductService productService) {
+    public Menu(ProductService productService, BillService billService) {
         this.productService = productService;
+        this.billService = billService;
     }
 
     public void runMenu() {
@@ -43,7 +46,7 @@ public class Menu {
             case 2 -> productService.removeProduct(); //  Eliminar producto
             case 3 -> productService.updateProduct(); //  Actualizar producto
             case 4 -> productService.displayAllProducts(); //  Ver todos los productos
-            case 5 -> System.out.println(); //  Vender productos
+            case 5 -> billService.buyProducts(); //  Vender productos
             case 6 -> System.out.println("Saliendo ...");
             default -> System.out.println("Opción invalida. Por favor intenta de nuevo.");
         }
