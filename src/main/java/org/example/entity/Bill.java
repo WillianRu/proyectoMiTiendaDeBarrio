@@ -1,7 +1,6 @@
 package org.example.entity;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Bill {
     LocalDate date;
@@ -14,6 +13,16 @@ public class Bill {
         this.idBill = idBill;
         this.subtotal = subtotal;
         this.total = total;
+    }
+
+    @Override
+    public String toString() {
+        return "Bill{" +
+                "date=" + date +
+                ", idBill=" + idBill +
+                ", subtotal=" + subtotal +
+                ", total=" + total +
+                '}';
     }
 
     public Integer getIdBill() {

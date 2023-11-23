@@ -9,6 +9,7 @@ import org.example.entity.Inventory;
 import org.example.entity.Product;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 public class BillService {
@@ -47,7 +48,16 @@ public class BillService {
             Product currentProduct = productCrud.findByID(idProduct);
             Double currentPrice = currentProduct.getPrice();
 
+
             subtotal = currentPrice * quantity;
+
+            Inventory currentInventory = inventoryCrud.findByID(idProduct);
+            int stock= currentInventory.getStock();
+            int currentStock = stock-quantity;
+
+            Inventory finalInventory = new Inventory(idProduct,currentStock);
+            inventoryCrud.edit(finalInventory);
+
 
             System.out.println("¿Desea comprar algo más? (Sí: 1 / No: 0)");
             int choice = scanner.nextInt();
@@ -63,4 +73,10 @@ public class BillService {
         currentId ++;
     }
 
+    public void showBills(){
+        List<Bill> currentBills = billCrud.findAll();
+        for (Bill bill: currentBills) {
+            System.out.println(bill.toString());
+        }
+    }
 }

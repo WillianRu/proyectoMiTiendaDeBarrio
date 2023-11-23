@@ -35,9 +35,10 @@ public class Menu {
         System.out.println("3. Actualizar producto                   |");
         System.out.println("4. Ver todos los productos               |");
         System.out.println("5. Vender productos                      |");
-        System.out.println("6. Salir                                 |");
+        System.out.println("6. Mostrar facturas                      |");
+        System.out.println("7. Salir                                 |");
         System.out.println("±----------------------------------------±");
-        System.out.print("   Ingresa tu opción:    (1 - 6)  ");
+        System.out.print("   Ingresa tu opción:    (1 - 7)  ");
     }
 
     public void handleUserChoice(int choice) {
@@ -47,7 +48,8 @@ public class Menu {
             case 3 -> productService.updateProduct(); //  Actualizar producto
             case 4 -> productService.displayAllProducts(); //  Ver todos los productos
             case 5 -> billService.buyProducts(); //  Vender productos
-            case 6 -> System.out.println("Saliendo ...");
+            case 6 -> billService.showBills(); //  Mostrar facturas
+            case 7 -> System.out.println("Saliendo ...");
             default -> System.out.println("Opción invalida. Por favor intenta de nuevo.");
         }
 

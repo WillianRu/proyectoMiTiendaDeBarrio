@@ -87,14 +87,20 @@ public class ProductService {
     }
     public void displayAllProducts() {
         List<Product> productList = productCrud.findAll();
+        List<Inventory> inventoryList = inventoryCrud.findAll();
         if (productList.isEmpty()) {
             System.out.println("No hay productos para mostrar.");
         } else {
             System.out.println("Lista de Productos:");
-            for (Product product : productList) {
-                System.out.println(product.toString());
-                System.out.println();
+            for (int i=0; i < productList.size(); i++){
+                Product product = productList.get(i);
+                Inventory inventory = inventoryList.get(i);
+                int stock = inventory.getStock();
+                System.out.println(product.toString() + ", Stock: " + stock);
             }
+
+
+
         }
     }
     public void removeProduct(){
